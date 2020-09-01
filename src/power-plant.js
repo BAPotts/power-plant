@@ -2,8 +2,8 @@
 
 // This function stores our state.
 
-const storeState = () => {
-  let currentState = {};
+const storeState = (initialState) => {
+  let currentState = initialState;
   return (stateChangeFunction = state => state) => {
     const newState = stateChangeFunction(currentState);
     currentState = {...newState};
@@ -11,7 +11,9 @@ const storeState = () => {
   }
 }
 
-export const stateControl = storeState();
+export const stateControlPlant1 = storeState({hardiness: 5});
+
+export const stateControlPlant2 = storeState({height: 10});
 
 // This is a function factory. We can easily create more specific functions that alter a plant's soil, water, and light to varying degrees.
 
@@ -28,7 +30,6 @@ export const feed = changeState("soil")(1);
 export const blueFood = changeState("soil")(5);
 export const hydrate = changeState("water")(1);
 export const superWater = changeState("water")(5);
-
 
 // UI Logic
 // $(document).ready(function() {
